@@ -25,5 +25,5 @@ pip install -r requirements.txt
 ```
 
 ## Panel de administración
-Buenas profesor, le envío las credenciales en un txt por separado que agregué a la entrega.
+Buenas profesor, le envío las credenciales para el panel administrador adjuntas en el txt de la entrega junto al link del repositorio.
 Saludos.
