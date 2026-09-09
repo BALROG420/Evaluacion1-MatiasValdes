@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ banda.banda }}</h1>
+<p class="banda-meta">{{ banda.pais }}</p>
+<p class="band-card-genres">
+    {% for g in banda.generos.all %}{{ g.genero }}{% if not forloop.last %}, {% endif %}{% endfor %}
+</p>
+<hr>
+<p>{{ banda.descripcion }}</p>
+
+<hr>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Albumes</h2>
+    <a href="{% url 'posts:form_album' banda.id %}" class="btn btn-primary mb-3">+ Agregar álbum</a>
+</div>
+<div class="row">
+    {% for album in banda.albums.all %}
+    <div class="col-md-3 mb-4">
+        <a href="{% url 'posts:album_detalle' album.id %}" class="band-card">
+            <img src="{{ album.miniature.url }}" class="img-fluid band-card-img" alt="{{ album.titulo }}">
+            <div class="band-card-body">
+                <h5>{{ album.titulo }}</h5>
+                <p>{{ album.anyo }}</p>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

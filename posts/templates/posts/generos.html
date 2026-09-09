@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Géneros</h1>
+    {% if editar %}
+        <a href="{% url 'posts:generos' %}" class="btn btn-outline-light btn-sm">Salir de edición</a>
+    {% else %}
+        <a href="?editar=1" class="btn btn-primary btn-sm">Editar</a>
+    {% endif %}
+</div>
+
+<ul>
+    {% for g in generos %}
+    <li class="mb-2">
+        <div  class="mb-2 d-flex align-items-center">
+            {% if editar %}
+                <form method="post" action="{% url 'posts:editar_genero' g.id %}" class="d-flex me-2">
+                    {% csrf_token %}
+                    <input type="text" name="genero" value="{{ g.genero }}" class="form-control form-control-sm me-1">
+                    <button type="submit" class="btn btn-sm btn-outline-light">
+                        <i class="fas fa-fw fa-save"></i>
+                    </button>
+                </form>
+                <form method="post" action="{% url 'posts:borrar_genero' g.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                    <i class="fas fa-fw fa-trash"></i>
+                </button>
+                </form>
+            {% else %}
+                <span>{{ g.genero }}</span>
+            {% endif %}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% if editar %}
+<form method="post" action="{% url 'posts:agregar_genero' %}" class="d-flex mt-3" style="max-width: 300px;">
+    {% csrf_token %}
+    <input type="text" name="genero" placeholder="Nuevo género" class="form-control me-2">
+    <button type="submit" class="btn btn-primary">+</button>
+</form>
+{% endif %}
+{% endblock %}

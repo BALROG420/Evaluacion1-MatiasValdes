@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3">
+        <img src="{{ album.miniature.url }}" class="img-fluid rounded mb-3" alt="{{ album.titulo }}">
+
+        <h1>{{ album.titulo }}</h1>
+        <h4 class="banda-meta">{{ album.banda }}</h4>
+
+        <hr>
+
+        <div class="album-meta">
+            <p><span class="meta-label">Año:</span> {{ album.anyo }}</p>
+            <p><span class="meta-label">Tipo:</span> {{ album.tipo }}</p>
+            <p><span class="meta-label">Género:</span>
+                {% for g in album.generos.all %}{{ g.genero }}{% if not forloop.last %}, {% endif %}{% endfor %}
+            </p>
+            <p class="mt-3"><strong>Duración total:</strong> {{ duracion_total }}</p>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="mb-0">Set Canciones</h3>
+            <a href="{% url 'posts:form_song' album.id %}" class="btn btn-primary">+ Agregar Canciones</a>
+            <a href="{% url 'posts:exportar_album' album.id %}" class="btn btn-outline-light"><i class="fas fa-file-excel"></i> Exportar Excel</a>
+        </div>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Título</th>
+                    <th>Duración</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for song in album.songs.all %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ song.nombre }}</td>
+                    <td>{{ song.duracion }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load static %}
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'posts:index' %}">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-skull-crossbones"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">TasteMetal</div>
+    </a>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'posts:index' %}">
+            <i class="fas fa-fw fa-guitar"></i>
+            <span>Bandas</span>
+        </a>
+    </li>
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'posts:generos' %}">
+            <i class="fas fa-fw fa-headphones"></i>
+            <span>Generos</span>
+        </a>
+    </li>
+</ul>   

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Dashboard{% endblock %}</title>
+
+    <!-- CSS -->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body id="page-top">
+
+<div id="wrapper">
+
+    {% include 'layout/sidebar.html' %}
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            {% include 'layout/navbar.html' %}
+
+            <div class="container-fluid">
+
+                {% include 'layout/messages.html' %}
+
+                {% block content %}
+                {% endblock %}
+
+            </div>
+
+        </div>
+
+        {% include 'layout/footer.html' %}
+
+    </div>
+
+</div>
+
+<!-- JS -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+<link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/custom.css' %}" rel="stylesheet">
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

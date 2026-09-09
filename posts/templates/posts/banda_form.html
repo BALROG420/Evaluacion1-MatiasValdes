@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h2 class="mb-2">Publicar banda</h2>
+    <hr>
+    <div class="col-md-5">
+        <form novalidate action="{% url 'posts:form_banda' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-4">
+                <label class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <div class="text-danger small">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Publicar</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %} 
